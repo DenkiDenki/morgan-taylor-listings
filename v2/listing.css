@@ -1,0 +1,458 @@
+/* Begin: State custom radio button */
+
+/* The slide-container */
+.check-container {
+  position: relative;
+  padding-left: 30px!important;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.check-container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: relative;
+  margin-left: 10px;
+  border-radius:100%;
+  height: 18px;
+  width: 18px;
+  background-color: #eee;
+}
+
+/* On mouse-over, add a grey background color */
+.check-container:hover input ~ .checkmark {
+  background-color: #82ba50;
+}
+
+/* When the checkbox is checked, add a blue background */
+.check-container input:checked ~ .checkmark {
+  background-color: #82ba50;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.check-container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.check-container .checkmark:after {
+  left: 5px;
+  top: 3px;
+  width: 7px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+/* End: State custom radio button */
+
+/* Begin: onoffswitch filters (Home status filter) */
+.check-container .filter-label{
+	margin-left: 5px;
+}
+.filter-label{
+	font-size: 15px;
+	line-height: 17px;
+	font-weight: 600;
+}
+.inline-switch{
+	min-width: 150px;
+	margin: 20px 0;
+	width: 33.33%;
+	text-align: center;
+}
+.onoffswitch {
+  	position: relative;
+    width: 45px!important;
+    float: left;
+  	margin: 0 10px!important;
+  	-webkit-user-select:none; 
+    -moz-user-select:none;
+    -ms-user-select: none;
+}
+.onoffswitch-checkbox {
+  	position: absolute;
+  	opacity: 0;
+  	pointer-events: none;
+}
+.onoffswitch-label {
+  	display: block; overflow: hidden; cursor: pointer;
+  	border-radius: 20px;
+}
+.onoffswitch-inner {
+  	display: block; width: 100%; margin-left: 0;
+  	transition: margin 0.3s ease-in 0s;
+}
+.onoffswitch-inner:before, .onoffswitch-inner:after {
+  	display: block;
+    float: left;
+    width: 50%;
+    height: 24px;
+    padding: 0;
+    line-height: 24px;
+  	font-size: 14px; color: white; font-family: Trebuchet, Arial, sans-serif; font-weight: bold;
+  	box-sizing: border-box;
+}
+.onoffswitch-inner:before {
+  	content: "";
+  	padding-left: 10px;
+  	background-color: #EEEEEE; color: #FFFFFF;
+}
+.onoffswitch-inner:after {
+  	content: "";
+  	padding-right: 10px;
+  	background-color: #EEEEEE; color: #999999;
+  	text-align: right;
+}
+.onoffswitch-switch {
+  	display: block;
+  	width: 18px;
+  	height: 18px;
+  	margin: 3px;
+  	background: #ccc;
+  	position: absolute;
+  	top: 0;
+  	bottom: 0;
+  	right: 20px;
+  	border-radius: 20px;
+  	transition: all .3s ease-in 0s;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
+  	margin-left: 0;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
+  	right: 0px; 
+  	background-color: #82BA50; 
+}
+
+.onoffswitch-trailing-icon {
+	width: 25px;
+    height: auto;
+    margin-left: 10px;
+}
+
+/* End: onoffswitch filters (Home status filter) */
+
+/* Begin: Listing */
+#homes-listing{
+	margin-top: 15px;
+}
+.home-listing-item {
+	display: flex;
+  	min-height: 160px;
+    margin: 12px 0;
+  	position: relative;
+}
+
+.home-listing-item figure img{
+  width: 186px;
+  height: 100%;/*216*/
+  object-fit: cover;
+}
+
+.home-listing-item figure {
+    min-width: 186px;
+  	margin-bottom: 0px;
+}
+
+.home-info {
+	background-color: #F8F8F8;
+  	padding: 20px;
+  	font-size: 14px;
+  	width: 100%;
+}
+
+.home-info p.title-and-price{
+  	font-size: 16px;
+  	display: flex;
+  	font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.home-info p.home-type,.home-info .home-info-details{
+    margin-bottom: 5px;
+}
+
+.home-info p.title-and-price .home-price {
+	margin-left: 10px;
+    width: 45%!important;
+    text-align: center;
+}
+.home-title{
+	width: 65%;
+}
+.home-actions{
+	display: flex;
+  	flex-wrap: wrap;
+}
+
+.home-info i {
+    color: #7db24c;
+}
+
+a.home-details, a.home-sharer {
+	padding: 8px 15px;
+  	color: black;
+ 	background: #FFFFFF;
+	border: 1px solid #E1E1E1;
+  	margin: 1px;
+}
+
+a.home-details i, a.home-sharer i{
+	color: black;
+}
+
+@media (max-width: 425px){
+	.home-listing-item figure {
+        width: 100%;
+  	}
+  	.home-listing-item {
+      flex-direction: column;
+  	}
+    .home-listing-item figure img{
+      width: 100%;
+      height: 256px;
+      object-fit: cover;
+    }
+}
+
+/* End: Listing */
+
+/* Begin: Listing share overlay */
+
+.home-share-overlay {
+	position: absolute;
+  	left: 15px;
+  	right: 15px;
+  	bottom: 0;
+  	top: 0;
+  	background: rgba(0,0,0,0.5);
+  	display: flex;
+    justify-content: center;
+    align-items: center;
+  	visibility: hidden;
+  	opacity: 0;
+  	transition: all .5s ease;
+}
+
+.home-listing-item.with-sharer-overlay .home-share-overlay{
+	visibility: visible;
+  	opacity: 1;	
+}
+
+.home-share-overlay a {
+	background: #FFFFFF;
+	box-shadow: 0px 0px 12px rgba(29, 50, 59, 0.5);
+  	border-radius: 50%;
+	width: 45px;
+    height: 45px;
+    line-height: 45px;
+    text-align: center;
+    margin: 0 5px;
+}
+
+/* End: Listing share overlay */
+
+/* Begin: Home filters */
+
+.home-filter {
+	margin: 0 5px;
+}
+
+.home-status-inline-switch{
+	margin: 10px 10px 30px;
+    display: flex;
+	align-items: center;
+}
+
+/* End: Home filters */
+
+/* Begin: Paginator */
+
+#home-paginator {
+	margin: 20px auto;
+}
+
+#homes-paginator span.page-number {
+    white-space: nowrap;
+}
+
+.page-number, .prev-button, .next-button {
+	cursor: pointer;
+  	user-select: none;
+  	margin: 0 5px;
+    padding: 0 5px;
+  	font-size: 16px;
+  	font-weight: 800;
+  	color: #000;
+}
+
+.page-number.current-page {
+	border-bottom: 1px solid #82BA50;
+}
+
+/* End: Paginator */
+
+/* Begin: Info Windows for Lots */
+
+.info-window-lot {
+	padding: 0 10px;
+}
+
+.info-window-floorplan {
+    display: flex;
+    align-items: center;
+    flex-flow: column wrap;
+  	width: 160px;
+}
+
+.info-window-floorplan-container{
+	display: flex;
+  	flex-wrap: wrap;
+  	justify-content: center;
+}
+
+.info-window-lot .action-content a,
+.info-window-lot .action-content button {
+  background: white;
+  min-height: 30px;
+  font-size: 13px;
+  border: 1px solid #E1E1E1;
+  transition: all 0.35s ease-in-out;
+  transform: scale(1);
+  margin-bottom: 5px;
+  border-radius: 3px;
+  text-align: left;
+  color: #3a3a3a;
+  max-width: 120px;
+  width: 100%;
+  padding: 1px 6px;
+  display: flex;
+  text-decoration: none;
+  font-weight: 400;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+.info-window-lot a .fas,
+.info-window-lot button .fas {
+  color: #82ba50;
+  width: 25px;
+}
+.info-window-lot a:hover,
+.info-window-lot button:hover {
+  transform: scale(1.1);
+}
+
+.info-window-lot h4{
+  	text-align: center;
+	margin: 10px 0;
+}
+
+.info-window-lot h6{
+	margin: 0;
+}
+
+.info-window-lot .action-content {
+	display: flex;
+  	justify-content: center;
+  	margin-top: 5px;
+}
+
+/* End: Info Windows for Lots */
+
+/* Begin: Backend Page Size Select */
+
+#homes-listing-page-size select#page-size{
+	background: white;
+    border: 1px solid #FFEFEF;
+    box-sizing: border-box;
+    border-radius: 5px;
+  	margin: 0 10px;
+	color: #000000;
+}
+
+#homes-listing-page-size {
+	font-size: 15px;
+}
+
+/* End: Backend Page Size Select */
+
+/* Begin: Backend Bootbox Confirm Dialog */
+
+.morgan-bootbox-btn-confirm,
+.morgan-bootbox-btn-cancel{
+	min-width: 203px;
+	min-height: 50px;
+	line-height: 50px;
+	text-align: center;
+	padding: 0;
+	font-weight: 800;
+	color: #ffffff!important;
+  	border-radius: 0;
+}
+
+.morgan-bootbox-btn-confirm {
+	background: #82BA50!important;
+}
+
+.morgan-bootbox-btn-cancel {
+	background: #000000!important;
+}
+
+.bootbox .modal-footer,
+.bootbox .modal-header{
+	justify-content: center;
+}
+
+.bootbox .modal-header h5 {
+  	color: #000000;
+	font-size: 24px;
+	font-weight: 800;
+}
+
+.bootbox .modal-body .bootbox-body {
+	color: #828282;
+	font-size: 20px;
+	font-weight: 500px;
+}
+/* End: Backend Bootbox Confirm Dialog */
+/* Locations */
+#cta-locations-link{
+	margin: 50px auto 10px;
+	
+	/*border-bottom: #7db24c 1px solid;*/
+}
+#cta-locations-link a{
+	text-decoration: #7db24c;
+}
+#cta-locations-link h3{ 
+	font-weight: 600;
+	text-align: center;
+}
+.cta-locations-name{
+	color:#7db24c;
+}

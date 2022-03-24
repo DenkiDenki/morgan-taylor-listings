@@ -1,0 +1,73 @@
+ [class^="icon-"]:before, [class*=" icon-"]:before {
+  font-family: "morganfont";
+  font-style: normal;
+  font-weight: normal;
+  speak: none;
+ 
+  display: inline-block;
+  text-decoration: inherit;
+  width: 1em;
+  margin-right: .2em;
+  text-align: center;
+  /* opacity: .8; */
+ 
+  /* For safety - reset parent styles, that can break glyph codes*/
+  font-variant: normal;
+  text-transform: none;
+ 
+  /* fix buttons height, for twitter bootstrap */
+  line-height: 1em;
+ 
+  /* Animation center compensation - margins should be symmetric */
+  /* remove if not needed */
+  margin-left: .2em;
+ 
+  /* you can be more comfortable with increased icons size */
+  /* font-size: 120%; */
+ 
+  /* Font smoothing. That was taken from TWBS */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+ 
+  /* Uncomment for 3D effect */
+  /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
+}
+ 
+.icon-info:before { content: '\e800'; } /* '' */
+.icon-sin-título-1-copia:before { content: '\e801'; } /* '' */
+.icon-residential:before { content: '\e802'; } /* '' */
+.icon-down-open:before { content: '\e803'; } /* '' */
+.icon-calendar:before { content: '\e804'; } /* '' */
+.icon-cancel:before { content: '\e805'; } /* '' */
+.icon-share:before { content: '\e806'; } /* '' */
+.icon-clock:before { content: '\e807'; } /* '' */
+.icon-group-1:before { content: '\e80a'; } /* '' */
+.icon-fast-:before { content: '\e80b'; } /* '' */
+.icon-experience:before { content: '\e80c'; } /* '' */
+.icon-perfect,-pre-built-homes--just-for-you:before { content: '\e80e'; } /* '' */
+.icon-location-is-key:before { content: '\e80f'; } /* '' */
+.icon-bed:before { content: '\e810'; } /* '' */
+.icon-free:before { content: '\e811'; } /* '' */
+.icon-always-searching:before { content: '\e812'; } /* '' */
+.icon-always-building:before { content: '\e813'; } /* '' */
+.icon-simple-and-fast:before { content: '\e814'; } /* '' */
+.icon-half-bath:before { content: '\e815'; } /* '' */
+.icon-info-1:before { content: '\e816'; } /* '' */
+.icon-built:before { content: '\e817'; } /* '' */
+.icon-group:before { content: '\e818'; } /* '' */
+.icon-bath:before { content: '\e819'; } /* '' */
+.icon-move-in-ready-homes:before { content: '\e81a'; } /* '' */
+.icon-letter:before { content: '\e81b'; } /* '' */
+.icon-price:before { content: '\e81c'; } /* '' */
+.icon-garage-1:before { content: '\e81d'; } /* '' */
+.icon-circle2:before { content: '\e81e'; } /* '' */
+.icon-arrow:before { content: '\e81f'; } /* '' */
+.icon-youtube:before { content: '\e820'; } /* '' */
+.icon-chat:before { content: '\e821'; } /* '' */
+.icon-facebook:before { content: '\e822'; } /* '' */
+.icon-instagram:before { content: '\e823'; } /* '' */
+.icon-linkedin:before { content: '\e824'; } /* '' */
+.icon-pinterest:before { content: '\e825'; } /* '' */
+.icon-twitter:before { content: '\e826'; } /* '' */
+.icon-yelp:before { content: '\e827'; } /* '' */
+.icon-Contract:before { content: '\e829'; } /* '' */
