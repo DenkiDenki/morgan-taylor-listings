@@ -124,6 +124,21 @@ function map_filter_fields( $home_status )
   <br>
 <?php
 }
+function get_gallery($gallery_array){
+  //confirmar que el campo existe y no está vacio
+  
+  //si no existe consultar el sales_status (get_sales_status();)y colocar la imagen por default para ese status
+  //si este no está definido devolver una imagen por default
+
+}
+function home_picture(){
+  //devolver el primero con la medida "medium"
+}
+function get_sales_status(){
+  //obtiene el custom_field para sales_status
+  //asigna status por defecto
+  return $sales_status = get_field('sale_status')? get_field('sale_status')->slug : 'avaiable';
+}
 
 function format_floorplan_correctly( $groups ){
 	if ( ! isset($groups) || ! $groups ) {
@@ -178,7 +193,9 @@ function get_homes() {
           'construction_status' => get_field('const-status_rel')? get_field('const-status_rel')->slug : 'available',
           'state' => get_field('state')? get_field('state')->slug : 'arizona',
           'custom_fields' => get_fields(),
+          
           'sale_status' => get_field('sale_status')? get_field('sale_status')->slug : 'N/A',
+          'sales_status' => get_sales_status(),
         );
         array_push( $homes, $home );
       }
@@ -213,9 +230,9 @@ function get_marker($home_status) {
 
 function load_morgan_find_your_home_map_filter_scripts() 
 {   
-  	wp_register_script( 'morgan_find_your_home_filters', plugin_dir_url( __FILE__ ) . 'filters.js', '1.2.0', true ); 
+  	wp_register_script( 'morgan_find_your_home_filters', plugin_dir_url( __FILE__ ) . 'filters.js', '1.0.0', true ); 
   	wp_register_script( 'morgan_find_your_home_map', plugin_dir_url( __FILE__ ) . 'map.js', '1.0.0', true );
-    wp_register_script( 'morgan_find_your_home_listing', plugin_dir_url( __FILE__ ) . 'listing.js', '1.1.0', true );
+    wp_register_script( 'morgan_find_your_home_listing', plugin_dir_url( __FILE__ ) . 'listing.js', '1.0.0', true );
     wp_register_script( 'morgan_city_listing', plugin_dir_url( __FILE__ ) . 'listing-cities.js', '1.0.0', true );
   	wp_register_script( 'morgan_homes_export', plugin_dir_url( __FILE__ ) . 'export.js', '1.0.0', true );
   	wp_register_style( 'morgan_listing', plugin_dir_url( __FILE__ ) . 'listing.css', '1.0.0', true );
