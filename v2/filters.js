@@ -1,5 +1,6 @@
 var mapMarkersV2 = [];
 var homes = [];
+var salesStatusImg;
 
 function applyFilters(homes){
 	return homes.filter( home => {
@@ -158,20 +159,13 @@ function getDistanceInMiles(markerLatitude, markerLongitude){
 function updateMarkers(){
   let homesWithLatAndLong = homes.filter( home => home.custom_fields.coordinates_group.latitude && home.custom_fields.coordinates_group.longitud )
   mapMarkersV2 = applyFilters(homesWithLatAndLong).map( function( home ){
-    let salesStatusImg;
-
-      if(home.sale_status === "sold"){
-        salesStatusImg = "/wp-content/uploads/2021/11/Sold-Refresh-II.jpeg";
-      }else if(home.sale_status === "pending"){ salesStatusImg = "/wp-content/uploads/2021/11/Pending-Refresh-II.jpeg";}
-    else{ salesStatusImg = home.custom_fields.gallery[0].sizes.medium; };
 
     let marker = {
       id: home.id,
       latitude: Number(home.custom_fields.coordinates_group.latitude),
       longitude: Number(home.custom_fields.coordinates_group.longitud),
       title: home.title,
-      image: home.custom_fields.gallery.length && home.custom_fields.gallery[0].sizes && home.custom_fields.gallery[0].sizes.medium ? home.custom_fields.gallery[0].sizes.medium : '/wp-content/uploads/2021/11/Pending-Refresh-II.jpeg',
-      image_hard: salesStatusImg,
+      image: listingImage(home),
       facebookUrl: home.facebook_url,
       pinterestUrl: home.pinterest_url,
       twitterUrl: home.twitter_url,
@@ -183,7 +177,7 @@ function updateMarkers(){
       prettyPrice: home.pretty_price,
       price: home.pretty_price == 0 ? "Coming Soon" : home.pretty_price,
       bedroom: home.custom_fields.beds,
-      salestatus: home.sale_status,
+      salestatus: home.sales_status,
       description: home.description,
       detailsUrl: home.permalink,
       markerImage: home.marker,
@@ -238,6 +232,14 @@ function getInfoWindowCustomTemplate( home ){
             </div>
     </div>`;
   }
+}
+
+function listingImage( home ){
+  if( home.sales_status === "sold" ){
+    salesStatusImg = "/wp-content/uploads/2021/11/Sold-Refresh-II.jpeg";
+    return salesStatusImg;
+  }else if(home.sales_status === "pending"){ return salesStatusImg = "/wp-content/uploads/2021/11/Pending-Refresh-II.jpeg";}
+else{ return salesStatusImg = home.image; };
 }
 
 jQuery('#available-lot-switch, #move-in-ready-switch, #under-construction-switch, #price, input[name="state"], #city, #radio').on('change', function(event){

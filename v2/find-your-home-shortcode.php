@@ -124,20 +124,33 @@ function map_filter_fields( $home_status )
   <br>
 <?php
 }
+$default_img = plugin_dir_url( __FILE__ ) . '/assets/img/no-image.png';
+
 function get_gallery($gallery_array){
   //confirmar que el campo existe y no está vacio
-  
-  //si no existe consultar el sales_status (get_sales_status();)y colocar la imagen por default para ese status
+  if( ! isset($gallery_array) || ! $gallery_array){
+    //si no existe consultar el sales_status (get_sales_status();)y colocar la imagen por default para ese status
   //si este no está definido devolver una imagen por default
+      return [];
+  }else{
+    return $gallery_array;
+  }
+  
 
 }
-function home_picture(){
+function listing_picture($gallery){
   //devolver el primero con la medida "medium"
+  if (!sizeof($gallery) == 0 ) {
+    return $gallery[0]['sizes']['medium'];
+  } else {
+    return $default_img;
+  }
 }
 function get_sales_status(){
   //obtiene el custom_field para sales_status
   //asigna status por defecto
-  return $sales_status = get_field('sale_status')? get_field('sale_status')->slug : 'avaiable';
+  $sales_status = get_field('sale_status')? get_field('sale_status')->slug : 'available';
+  return $sales_status;
 }
 
 function format_floorplan_correctly( $groups ){
@@ -163,7 +176,7 @@ function get_homes() {
       'posts_per_page' => '-1',
       'post_type' => 'homes',
       'post_status' => 'publish',
-      'order' => 'ASC',
+      'order' => 'DESC',
       'orderby' => 'ID',
     );
    
@@ -193,11 +206,14 @@ function get_homes() {
           'construction_status' => get_field('const-status_rel')? get_field('const-status_rel')->slug : 'available',
           'state' => get_field('state')? get_field('state')->slug : 'arizona',
           'custom_fields' => get_fields(),
-          
-          'sale_status' => get_field('sale_status')? get_field('sale_status')->slug : 'N/A',
+
+          'image' => listing_picture(get_gallery(get_field('gallery'))),
+          //'sale_status' => get_field('sale_status')? get_field('sale_status')->slug : 'N/A',
           'sales_status' => get_sales_status(),
         );
+        
         array_push( $homes, $home );
+       /* var_dump($homes);*/
       }
       wp_reset_postdata();
     } else {
