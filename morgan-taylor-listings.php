@@ -183,7 +183,7 @@ function my_enqueue_stuff()
 }
 
 add_action('wp_enqueue_scripts', 'my_enqueue_stuff');
-
+/*************************** *
 /********************** */
 include_once('templater.php');
 include_once('related-floorplans.php');

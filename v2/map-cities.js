@@ -3,39 +3,41 @@ var autocomplete;
 var mapReady = false;
 
 jQuery(document).ready(function () {
-  var mapElement = document.createElement('div');
-  mapElement.id = 'map'; 
-  mapElement.style.height = '400px';
-  mapElement.style.width = '100%';
-  var mapLocation = document.getElementById('homes-map-wrapper'); // The first row
+  var mapElement = document.createElement("div");
+  mapElement.id = "map";
+  mapElement.style.height = "400px";
+  mapElement.style.width = "100%";
+  var mapLocation = document.getElementById("homes-map-wrapper"); // The first row
   mapLocation.appendChild(mapElement);
 
   morganMap = new MorganMap({
     popup: true,
   });
-  morganMap.on('onMapReady', (data) => {
+  morganMap.on("onMapReady", (data) => {
     mapReady = true; // used by radius filter
-//	initializeCityAutocomplete();
+    //	initializeCityAutocomplete();
 
-    homesbycity = JSON.parse(document.getElementById('home-json').innerText);
-   	//const s = document.createElement( 'script' );
-	//const region = document.getElementById('region-hidden').value;
-	//const city = document.getElementById('city-hidden').value;
+    homesbycity = JSON.parse(document.getElementById("home-json").innerText);
+    //const s = document.createElement( 'script' );
+    //const region = document.getElementById('region-hidden').value;
+    //const city = document.getElementById('city-hidden').value;
 
-        //s.src = `/homesbycity-data-${city}-${region}.js`;
-	//s.type = 'text/javascript';
-        //s.async = true;
-	//s.onload = function(){
-    homesbycity = homesbycity.sort(function(a, b){return a.custom_fields.price_v - b.custom_fields.price_v}); // sort by price
-      	updateHomes();
+    //s.src = `/homesbycity-data-${city}-${region}.js`;
+    //s.type = 'text/javascript';
+    //s.async = true;
+    //s.onload = function(){
+    homesbycity = homesbycity.sort(function (a, b) {
+      return a.custom_fields.price_v - b.custom_fields.price_v;
+    }); // sort by price
+    updateHomes();
     //}
-	//document.body.appendChild(s)
+    //document.body.appendChild(s)
   });
 });
 
 function redrawMap() {
-	morganMap.clearMarkers();
-  	morganMap.addMarker(mapMarkersV2, true);
+  morganMap.clearMarkers();
+  morganMap.addMarker(mapMarkersV2, true);
 }
 
 /*function initializeCityAutocomplete(){

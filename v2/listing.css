@@ -297,7 +297,7 @@ a.home-details i, a.home-sharer i{
 }
 
 #homes-paginator span.page-number {
-    white-space: nowrap;
+   /* white-space: nowrap;*/
 }
 
 .page-number, .prev-button, .next-button {

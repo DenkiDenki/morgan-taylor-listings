@@ -15,7 +15,7 @@ function morgan_find_your_home_map_shortcode($atts)
 ?>
 	<div id="homes-map-wrapper"></div>
 	<div id="homes-listing" class="container"></div>
-	<div id="homes-paginator" class="container text-center"></div>
+	<div id="homes-paginator" class="container text-center justify-content-center "></div>
 	<div id="button-print" style="text-align: center; margin-top: 20px;">
       <a style="cursor: pointer; color=#212529; font-weight:bold;" onclick="exportHomesPDF()">[PRINT ALL LISTINGS]</a>
       <!--<button style="background: #82ba50;border-color: #82ba50;color: white;font-weight: bold;" onclick="exportHomesPDF()">TO PRINT</button>-->
@@ -124,7 +124,6 @@ function map_filter_fields( $home_status )
   <br>
 <?php
 }
-$default_img = plugin_dir_url( __FILE__ ) . '/assets/img/no-image.png';
 
 function get_gallery($gallery_array){
   //confirmar que el campo existe y no está vacio
@@ -143,7 +142,8 @@ function listing_picture($gallery){
   if (!sizeof($gallery) == 0 ) {
     return $gallery[0]['sizes']['medium'];
   } else {
-    return $default_img;
+    //si no existe devolver 0
+    return 0;
   }
 }
 function get_sales_status(){
@@ -177,7 +177,7 @@ function get_homes() {
       'post_type' => 'homes',
       'post_status' => 'publish',
       'order' => 'DESC',
-      'orderby' => 'ID',
+	    'orderby' => 'date',
     );
    
     $query = new WP_Query( $args );
@@ -208,7 +208,6 @@ function get_homes() {
           'custom_fields' => get_fields(),
 
           'image' => listing_picture(get_gallery(get_field('gallery'))),
-          //'sale_status' => get_field('sale_status')? get_field('sale_status')->slug : 'N/A',
           'sales_status' => get_sales_status(),
         );
         
@@ -228,9 +227,11 @@ function get_marker($home_status) {
 	$marker = '';
   	switch($home_status){
       case 'available-lot':
+      case 'available':
 		$marker = plugins_url( 'img/Available_Lot.png', __FILE__ );
         break;
       case 'under-construction':
+      case 'new-construction':
 		$marker = plugins_url( 'img/Under_Construction.png', __FILE__ );
         break;
       case 'move-in-ready':
@@ -255,3 +256,29 @@ function load_morgan_find_your_home_map_filter_scripts()
 }
 
 add_action('wp_enqueue_scripts', 'load_morgan_find_your_home_map_filter_scripts');
+
+function hide_empty_gallery_home_posts(){
+  global $post;
+  $postname = $post->post_type;
+
+  //var_dump($postname);
+  if ($postname == 'homes') {
+  wp_register_script( 'hide-empty-gallery-script', plugin_dir_url( __FILE__ ) . 'hide_empty_gallery.js','1.0.0', true);
+  wp_enqueue_script('hide-empty-gallery-script');
+
+     map_custom_fields();
+  }
+  
+}
+add_action('wp_enqueue_scripts', 'hide_empty_gallery_home_posts');
+function map_custom_fields(){
+  // get_the_ID()
+  $individualHome = array(
+         'id' => get_the_ID(),
+         'custom_fields' => get_fields(),
+         'floorplans' => format_floorplan_correctly(get_field('related_floor_plan_with_price')),
+         'image' => get_gallery(get_field('gallery')),
+  );
+
+  echo "<script>var individualHome = ".json_encode($individualHome, true).";</script>";
+}

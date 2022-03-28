@@ -4,56 +4,63 @@ var maxPages = 0;
 const PAGE_LENGTH = 6;
 
 function renderHomeListing() {
-  	sliceHomes();
-	document.getElementById('homes-listing').innerHTML = '<div class="row">' + homeListing.map( homeListingTemplate ).join('') + '</div>';
-    
-    renderPaginator();
+  sliceHomes();
+  document.getElementById("homes-listing").innerHTML =
+    '<div class="row">' +
+    homeListing.map(homeListingTemplate).join("") +
+    '</div>';
+
+  renderPaginator();
 }
 
 function renderPaginator() {
-	maxPages = Math.ceil(mapMarkersV2.length / PAGE_LENGTH);
-  	let paginator = '<section id="homes-paginator">';
-  
-  	if (maxPages > 1 && currentPage !== 1) {
-    	paginator += `<span class="prev-button">PREV</span>`;
-    }
-  
-  	for (let i = 1; i <= maxPages; i++) {
-    	paginator += `<span class="page-number ${ i === currentPage ? 'current-page' : '' }">${i}</span>`;
-    }
-  
-  	if (maxPages > 1 && currentPage !== maxPages) {
-    	paginator += `<span class="next-button">NEXT</span>`;
-    }
-  
-  	paginator += '</section>';
-  
-  	document.getElementById('homes-paginator').innerHTML = paginator;
+  maxPages = Math.ceil(mapMarkersV2.length / PAGE_LENGTH);
+  let paginator = '<section id="homes-paginator">';
+
+  if (maxPages > 1 && currentPage !== 1) {
+    paginator += `<span class="prev-button">PREV</span>`;
+  }
+
+  for (let i = 1; i <= maxPages; i++) {
+    paginator += `<span class="page-number ${
+      i === currentPage ? "current-page" : ""
+    }">${i}</span>`;
+  }
+
+  if (maxPages > 1 && currentPage !== maxPages) {
+    paginator += `<span class="next-button">NEXT</span>`;
+  }
+
+  paginator += "</section>";
+
+  document.getElementById("homes-paginator").innerHTML = paginator;
 }
 
-function sliceHomes(){
-	homeListing = mapMarkersV2.slice((currentPage - 1) * PAGE_LENGTH, currentPage * PAGE_LENGTH);
+function sliceHomes() {
+  homeListing = mapMarkersV2.slice(
+    (currentPage - 1) * PAGE_LENGTH,
+    currentPage * PAGE_LENGTH
+  );
 }
 
-jQuery(document).on('click','span.page-number', function(){
-  	jQuery(this).addClass('current-page');	
-  
-  	currentPage = Number(jQuery(this).text());
- 
-  	renderHomeListing();
+jQuery(document).on("click", "span.page-number", function () {
+  jQuery(this).addClass("current-page");
+
+  currentPage = Number(jQuery(this).text());
+
+  renderHomeListing();
 });
 
-jQuery(document).on('click', '.prev-button', function(){
-  jQuery('span.page-number.current-page').prev().click();
+jQuery(document).on("click", ".prev-button", function () {
+  jQuery("span.page-number.current-page").prev().click();
 });
 
-jQuery(document).on('click', '.next-button', function(){
-  jQuery('span.page-number.current-page').next().click();
+jQuery(document).on("click", ".next-button", function () {
+  jQuery("span.page-number.current-page").next().click();
 });
 
-
-function homeListingTemplate( home ) {
-    return `
+function homeListingTemplate(home) {
+  return `
     <section id="home-${home.id}" class="home-listing-item col-lg-6" style="position: relative;">
         <figure>
 			<a href="${home.detailsUrl}"><img loading="lazy" class="home lazy" data-src="${home.image}" src="${home.image}"/>
@@ -83,13 +90,13 @@ function homeListingTemplate( home ) {
     </section>`;
 }
 
-jQuery(document).on('click', 'a.home-sharer', function(event){
-	event.preventDefault();
-  	let homeId = jQuery(this).data('home-id');
-	jQuery(`#home-${homeId}`).addClass('with-sharer-overlay');
-})
+jQuery(document).on("click", "a.home-sharer", function (event) {
+  event.preventDefault();
+  let homeId = jQuery(this).data("home-id");
+  jQuery(`#home-${homeId}`).addClass("with-sharer-overlay");
+});
 
-jQuery(document).on('click', 'section.home-share-overlay', function(event){  
-    let homeId = jQuery(this).data('home-id');
-	jQuery(`#home-${homeId}`).removeClass('with-sharer-overlay');
-})
+jQuery(document).on("click", "section.home-share-overlay", function (event) {
+  let homeId = jQuery(this).data("home-id");
+  jQuery(`#home-${homeId}`).removeClass("with-sharer-overlay");
+});
