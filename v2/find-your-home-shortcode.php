@@ -282,3 +282,19 @@ function map_custom_fields(){
 
   echo "<script>var individualHome = ".json_encode($individualHome, true).";</script>";
 }
+
+// you must do this to override
+add_action( 'save_post', 'override_homes_data', 20, 2 );
+function override_homes_data( $post_id, $post ) {
+    // bail out if this is an autosave
+    if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+        return;
+    }
+ 
+    // bail out if this is not an event item
+    if ( 'homes' !== $post->post_type ) {
+        return;
+    }
+ 
+    get_homes();
+}

@@ -267,9 +267,7 @@ function getInfoWindowCustomTemplate(home) {
 }
 
 function listingImage(home) {
-  if (home.image == 0) {
-    return (salesStatusImg = "/wp-content/uploads/2020/06/no-image.jpg");
-  } else {
+ 
     if (home.sales_status === "sold") {
       salesStatusImg = "/wp-content/uploads/2021/11/Sold-Refresh-II.jpeg";
       return salesStatusImg;
@@ -277,6 +275,9 @@ function listingImage(home) {
       return (salesStatusImg =
         "/wp-content/uploads/2021/11/Pending-Refresh-II.jpeg");
     } else {
+      if (home.image == 0) {
+        return (salesStatusImg = "/wp-content/uploads/2020/06/no-image.jpg");
+      } else {
       salesStatusImg = home.image;
       return salesStatusImg;
     }
